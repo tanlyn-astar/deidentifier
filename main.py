@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-input_folder = "./input/2_100 original files"
+input_folder = "./input/3_100 gold standard files"
 output_folder = "./output"
 
 os.makedirs(output_folder, exist_ok=True)
@@ -48,7 +48,7 @@ for filename in sorted(os.listdir(input_folder)):
         row = {"Id": report_id, "Notes": report, "PatientMRN": "", "PatientName": ""}
         rows.append(row)
         all_rows.append(row)
-        tracker_rows.append({"Id": report_id, "Filename": filename, "Reports in file": len(reports), "Benchmarked?": "", "Status": "", "Comments": ""})
+        tracker_rows.append({"Id": report_id, "Filename": filename, "Reports in file": len(reports), "Reviewed by": "", "Benchmarked?": "", "Status": "", "Comments": ""})
         report_id += 1
 
     out_name = os.path.splitext(filename)[0] + ".csv"
@@ -64,6 +64,6 @@ pd.DataFrame(all_rows, columns=["Id", "Notes", "PatientMRN", "PatientName"]).to_
 )
 print(f"Collated CSV written: {len(all_rows)} total reports")
 
-tracker_df = pd.DataFrame(tracker_rows, columns=["Id", "Filename", "Reports in file", "Benchmarked?", "Status", "Comments"])
+tracker_df = pd.DataFrame(tracker_rows, columns=["Id", "Filename", "Reports in file", "Reviewed by", "Benchmarked?", "Status", "Comments"])
 tracker_df.to_excel(os.path.join(output_folder, "Report Tracker.xlsx"), index=False)
 print(f"Tracker written: {len(tracker_rows)} total reports")
