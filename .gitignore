@@ -1,0 +1,26 @@
+# .gitignore
+
+# Ignore Python virtual environment
+.env
+venv/
+logs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Temp files
+*.tmp
+*.tmp.*
+
+input/vocabs/
+input/
+output/
+testing/
+embeddings/
+credentials/
+
+utils/general/embed_faiss.py
+.streamlit/secrets.toml
+.streamlit/secrets_azure.toml
