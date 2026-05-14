@@ -48,7 +48,7 @@ for filename in sorted(os.listdir(input_folder)):
 
     rows = []
     for chunk in chunks:
-        row = {"Id": report_id, "Notes": chunk, "PatientMRN": "", "PatientName": ""}
+        row = {"Id": report_id, "Notes": chunk, "PatientMRN": "", "PatientName": "", "PatientPhone": "", "PatientDateOfBirth": ""}
         rows.append(row)
         all_rows.append(row)
         tracker_rows.append({"Id": report_id, "Filename": filename, "Records per file": num_records, "Reviewed by": "", "Status": "", "Comments": ""})
@@ -58,7 +58,7 @@ for filename in sorted(os.listdir(input_folder)):
     out_path = os.path.join(output_folder, out_name)
 
     with open(out_path, "w", encoding="utf-8-sig", newline="") as f:
-        f.write('"Id","Notes","PatientMRN","PatientName"\r\n')
+        f.write('"Id","Notes","PatientMRN","PatientName","PatientPhone","PatientDateOfBirth"\r\n')
         for row in rows:
             f.write(f'"{row["Id"]}","{row["Notes"]}","",""\r\n')
 
